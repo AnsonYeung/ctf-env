@@ -31,6 +31,7 @@ if [ -d "$HOME/.r2env/bin" ] ; then
 fi
 
 EDITOR="nvim"
+export LC_CTYPE="C.UTF-8"
 
 alias vi="vim"
 alias vim="nvim"
