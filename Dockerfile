@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM kalilinux/kali-rolling
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt -y install kali-linux-headless
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt -y install neovim nodejs gdb python3.9-venv python3-pip man-db
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install kali-linux-headless
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install neovim nodejs gdb python3.9-venv python3-pip man-db
 RUN useradd -m user1 && chsh -s /usr/bin/zsh user1
 WORKDIR /home/user1
 COPY home/ ./
