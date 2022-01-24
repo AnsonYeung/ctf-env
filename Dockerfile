@@ -7,6 +7,9 @@ WORKDIR /home/user1
 COPY home/ ./
 RUN chown user1:user1 -R /home/user1 && passwd -d user1 && echo 'user1 ALL=(ALL:ALL) NOPASSWD: ALL' | EDITOR='tee -a' visudo
 USER user1
-RUN nvim +PlugInstall +qall
-RUN pip install pwntools ropper keystone-engine capstone unicorn pycryptodome
+RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+RUN nvim --headless +PlugInstall +qall
+RUN pip install --no-warn-script-location pwntools ropper keystone-engine capstone unicorn pycryptodome
 ENTRYPOINT ["/usr/bin/zsh"]
